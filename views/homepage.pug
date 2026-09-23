@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    main.page
+      header.page-header
+        div
+          p.eyebrow HubSpot custom objects
+          h1 Trail Plants
+          p.page-intro Plants tracked in the developer test account.
+        a.button(href='/update-cobj') Add to this table
+      if error
+        p.alert(role='alert')= error
+      else if records.length
+        .table-wrap
+          table
+            thead
+              tr
+                th(scope='col') Name
+                th(scope='col') Habitat
+                th(scope='col') Care Notes
+            tbody
+              each record in records
+                tr
+                  td= record.properties.name || '—'
+                  td= record.properties.habitat || '—'
+                  td= record.properties.care_notes || '—'
+      else
+        p.empty No plants yet. Add one to start the table.

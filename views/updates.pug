@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    main.page.narrow
+      a.back-link(href='/') ← Return to the homepage
+      p.eyebrow HubSpot custom objects
+      h1 Add a Trail Plant
+      p.page-intro Enter the three properties for a new custom object record.
+      if error
+        p.alert(role='alert')= error
+      form.form-card(action='/update-cobj', method='post')
+        label(for='name') Name
+        input#name(type='text', name='name', value=values.name || '', required, maxlength='255')
+        label(for='habitat') Habitat
+        input#habitat(type='text', name='habitat', value=values.habitat || '', required, maxlength='255')
+        label(for='care_notes') Care Notes
+        textarea#care_notes(name='care_notes', required, rows='4')= values.care_notes || ''
+        button.button(type='submit') Add Trail Plant
